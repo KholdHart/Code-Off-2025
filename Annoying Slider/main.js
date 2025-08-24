@@ -1,14 +1,16 @@
-var slider = document.getElementById("myRange");
-var output = document.getElementById("value");
+  const slider = document.getElementById("slider");
+    const container = document.getElementById("container");
 
-output.innerHTML = slider.value;
+    slider.addEventListener("mouseenter", () => {
+      const maxX = container.clientWidth - slider.clientWidth;
+      const maxY = container.clientHeight - slider.clientHeight;
+      slider.style.left = Math.random() * maxX + "px";
+      slider.style.top = Math.random() * maxY + "px";
+    });
 
-slider.oninput = function() {
-    output.innerHTML = this.value;
-}
-
-slider.addEventListener("mousemove", function() {
-    var x = slider.value;
-    var color = "linear-gradient(90deg, rgba(255, 0, 0) " + x + "%, rgba(255, 255, 255) " + x + "%)";
-    slider.style.background = color;
-});
+    slider.addEventListener("input", () => {
+      if (Math.random() < 0.3) {
+        slider.value = Math.floor(Math.random() * 100);
+        alert("Oops! Volume reset ");
+      }
+    });
